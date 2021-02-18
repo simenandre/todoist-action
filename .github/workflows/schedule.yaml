@@ -10,6 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_KEY }}
+          project_id: cobraz
+          export_default_credentials: true
+
       - uses: ./
         with:
           github-token: ${{ secrets.GH_TOKEN }}
