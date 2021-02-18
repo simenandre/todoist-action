@@ -1,0 +1,23 @@
+name: Github Todoist Tasks
+description: Synchronizes Github issues with Todoist
+author: Simen A. W. Olsen
+inputs:
+  github-token:
+    required: true
+    description: Github Token (cannot be default token)
+  todoist-token:
+    required: true
+    description: You can retrieve this from Todoist / Settings
+  query:
+    required: true
+    description: "Github Search Query, e.g 'is: issue'"
+  storage-bucket:
+    required: true
+    description: Where to store synchronization state
+  sync-file-name:
+    required: false
+    description: 'filename/filepath for sync file. e.g. sync.json'
+    default: 'gh-todoist.json'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

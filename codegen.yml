@@ -1,0 +1,15 @@
+schema:
+  - https://api.github.com/graphql:
+      headers:
+        Authorization: bearer db655cc37c01278b8db04d9902103c4f1d1f79e2
+overwrite: true
+hooks:
+  afterAllFileWrite: prettier --write
+generates:
+  src/generated/graphql.ts:
+    documents: src/operations/*.graphql
+    plugins:
+    - typescript
+    - typescript-operations
+    - typescript-graphql-request
+    - fragment-matcher

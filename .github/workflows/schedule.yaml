@@ -1,0 +1,18 @@
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ./
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          todoist-token: ${{ secrets.TODOIST_TOKEN }}
+          query: archived:false sort:updated-desc assignee:cobraz created:>2021-01-01
+          storage-bucket: gh-todoist

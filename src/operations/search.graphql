@@ -1,0 +1,42 @@
+fragment RepoInfo on Repository {
+  owner {
+    login
+  }
+  name
+}
+
+fragment PullRequestInfo on PullRequest {
+  repository {
+    ...RepoInfo
+  }
+  id
+  number
+  title
+  url
+  prState: state
+}
+
+fragment IssueInfo on Issue {
+  repository {
+    ...RepoInfo
+  }
+  id
+  number
+  title
+  url
+  issueState: state
+}
+
+fragment SearchResult on SearchResultItem {
+  __typename
+  ...PullRequestInfo
+  ...IssueInfo
+}
+
+query Search($query: String!) {
+  search(last: 100, query: $query, type: ISSUE) {
+    nodes {
+      ...SearchResult
+    }
+  }
+}
