@@ -1,4 +1,4 @@
-import { debug } from '@actions/core';
+import { debug, setFailed } from '@actions/core';
 import { Todoist } from 'todoist';
 import { makeConfig } from './config';
 import { githubIssuesDiff, makeGithubClient } from './github';
@@ -71,4 +71,4 @@ const main = async () => {
   await storage.set(store);
 };
 
-main();
+main().catch(e => setFailed(e.message));
