@@ -58,7 +58,7 @@ export function compareGithubIssues(
     };
   }
 
-  const created = destination.filter(d => !source.find(s => d.id !== s.id));
+  const created = destination.filter(d => !source.find(s => d.id === s.id));
 
   return {
     created,
@@ -71,7 +71,7 @@ export function compareGithubIssues(
       })
       .filter(notEmpty),
     deleted: source.filter(
-      s => !destination.find(d => s && d && d.id !== s.id),
+      s => !destination.find(d => s && d && d.id === s.id),
     ),
   };
 }
