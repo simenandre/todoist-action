@@ -53,9 +53,11 @@ const main = async () => {
     await Promise.all(
       github.deleted.map(async d => {
         if (d.todoistId) {
-          await t.items.complete({
+          const i = store.github.findIndex(g => g.id === d.id);
+          await t.items.delete({
             id: d.todoistId,
           });
+          delete store.github[i];
         }
       }),
     );
