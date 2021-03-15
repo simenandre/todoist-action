@@ -1,8 +1,8 @@
 import { debug, setFailed } from '@actions/core';
 import { Todoist } from 'todoist';
 import { makeConfig } from './config';
-import { githubIssuesDiff, makeGithubClient } from './github';
-import { GithubIssue, Storage } from './storage';
+import { githubIssuesDiff, makeGithubClient, notEmpty } from './github';
+import { GithubIssue, IssueState, Storage } from './storage';
 import {
   handleTodoistUpdatedStatus,
   parseTodoistFromGithubIssue,
@@ -22,23 +22,25 @@ const main = async () => {
   try {
     if (github.created) {
       const updated = await Promise.all(
-        github.created.map(async i => {
-          const itemArgs = await parseTodoistFromGithubIssue(i);
-          const item = await t.items.add(itemArgs);
-          debug(`GitHub issue ${i.repo}#${i.id} was updated.`);
-          return <GithubIssue>{
-            ...i,
-            todoistId: item?.id,
-          };
-        }),
+        github.created
+          .filter(f => notEmpty(f) && f.state !== IssueState.Closed)
+          .map(async i => {
+            const itemArgs = await parseTodoistFromGithubIssue(i);
+            const item = await t.items.add(itemArgs);
+            debug(`GitHub issue ${i.repo}#${i.number} was created.`);
+            return <GithubIssue>{
+              ...i,
+              todoistId: item?.id,
+            };
+          }),
       );
       store.github.push(...updated);
     }
 
     if (github.updated) {
       await Promise.all(
-        github.updated.map(async d => {
-          const i = store.github.findIndex(g => g.id === d.id);
+        github.updated.filter(notEmpty).map(async d => {
+          const i = store.github.findIndex(g => g && g.id === d.id);
           const s = store.github[i];
           const itemArgs = await parseTodoistFromGithubIssue(d);
           if (d.todoistId) {
@@ -60,14 +62,14 @@ const main = async () => {
 
     if (github.deleted) {
       await Promise.all(
-        github.deleted.map(async d => {
+        github.deleted.filter(notEmpty).map(async d => {
           if (d.todoistId) {
-            const i = store.github.findIndex(g => g.id === d.id);
             await t.items.delete({
               id: d.todoistId,
             });
             debug(`GitHub issue ${d.repo}#${d.number} was deleted.`);
-            delete store.github[i];
+            const i = store.github.findIndex(g => g && g.id === d.id);
+            store.github.splice(i, 1);
           }
         }),
       );
@@ -81,5 +83,6 @@ const main = async () => {
 
 main().catch(e => {
   debug(`error: ${JSON.stringify(e)}`);
+  debug(e.stack);
   setFailed(e.message);
 });

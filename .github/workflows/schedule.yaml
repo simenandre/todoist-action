@@ -20,5 +20,5 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           todoist-token: ${{ secrets.TODOIST_TOKEN }}
-          query: archived:false sort:updated-desc assignee:cobraz created:>2021-01-01
+          query: archived:false sort:updated-desc assignee:cobraz created:>2021-02-01 -label:backlog
           storage-bucket: gh-todoist
