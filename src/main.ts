@@ -75,4 +75,7 @@ const main = async () => {
   await storage.set(store);
 };
 
-main().catch(e => setFailed(e.message));
+main().catch(e => {
+  debug(`error: ${JSON.stringify(e)}`);
+  setFailed(e.message);
+});
