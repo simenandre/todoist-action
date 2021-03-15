@@ -36,6 +36,7 @@
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "husky": "^4.3.8",
+    "promise-retry": "^2.0.1",
     "runtypes": "^5.0.1",
     "todoist": "^0.4.0",
     "yaml": "^1.10.0"

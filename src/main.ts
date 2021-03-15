@@ -2,9 +2,8 @@ import { debug, setFailed } from '@actions/core';
 import { Todoist } from 'todoist';
 import { makeConfig } from './config';
 import { githubIssuesDiff, makeGithubClient } from './github';
-import { Storage } from './storage';
+import { GithubIssue, Storage } from './storage';
 import {
-  handleNewIssues,
   handleTodoistUpdatedStatus,
   parseTodoistFromGithubIssue,
 } from './todoist';
@@ -20,12 +19,19 @@ const main = async () => {
   await t.sync();
 
   const github = await githubIssuesDiff(o, config, store.github);
-
-  debug(`Github Diff: ${JSON.stringify(github, null, 2)}`);
-
   try {
     if (github.created) {
-      const updated = await handleNewIssues(t, github.created);
+      const updated = await Promise.all(
+        github.created.map(async i => {
+          const itemArgs = await parseTodoistFromGithubIssue(i);
+          const item = await t.items.add(itemArgs);
+          debug(`GitHub issue ${i.repo}#${i.id} was updated.`);
+          return <GithubIssue>{
+            ...i,
+            todoistId: item?.id,
+          };
+        }),
+      );
       store.github.push(...updated);
     }
 
@@ -40,7 +46,7 @@ const main = async () => {
               id: d.todoistId,
               ...itemArgs,
             });
-            debug(`GitHub issue #${d.number} was updated.`);
+            debug(`GitHub issue ${d.repo}#${d.number} was updated.`);
 
             if (d.state !== s.state) {
               await handleTodoistUpdatedStatus(t, d, s);
@@ -60,18 +66,16 @@ const main = async () => {
             await t.items.delete({
               id: d.todoistId,
             });
+            debug(`GitHub issue ${d.repo}#${d.number} was deleted.`);
             delete store.github[i];
           }
         }),
       );
     }
   } catch (e) {
-    debug(`Storing this object: ${JSON.stringify(store, null, 2)}`);
     await storage.set(store);
     throw e;
   }
-
-  debug(`Storing this object: ${JSON.stringify(store, null, 2)}`);
   await storage.set(store);
 };
 
