@@ -21,6 +21,8 @@ const main = async () => {
 
   const github = await githubIssuesDiff(o, config, store.github);
 
+  debug(`Github Diff: ${JSON.stringify(github, null, 2)}`);
+
   if (github.created) {
     const updated = await handleNewIssues(t, github.created);
     store.github.push(...updated);
