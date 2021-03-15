@@ -58,16 +58,20 @@ export function compareGithubIssues(
     };
   }
 
+  const created = destination.filter(d => !source.find(s => d.id === s.id));
+
   return {
-    created: destination.filter(d => source.find(s => d.id !== s.id)),
+    created,
     updated: destination
       .map(d => {
-        const s = source.find(s => s.id === s.id);
-        if (!isGithubIssueEqual(s, d)) {
+        const s = source.find(s => s && d.id === s.id);
+        if (!isGithubIssueEqual(s, d) && s) {
           return { ...s, ...d };
         }
       })
       .filter(notEmpty),
-    deleted: source.filter(s => destination.find(d => d.id !== s.id)),
+    deleted: source.filter(
+      s => !destination.find(d => s && d && d.id === s.id),
+    ),
   };
 }

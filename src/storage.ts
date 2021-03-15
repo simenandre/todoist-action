@@ -1,3 +1,4 @@
+import { debug } from '@actions/core';
 import { Storage as GoogleCloudStorage } from '@google-cloud/storage';
 import getStream from 'get-stream';
 import { Config } from './config';
@@ -47,7 +48,9 @@ export class Storage {
 
   async set(data: SyncStorage): Promise<SyncStorage> {
     const file = this.getFile();
-    await file.save(JSON.stringify(data));
+    const jsonData = JSON.stringify(data);
+    debug(`Storing this object: ${jsonData}`);
+    await file.save(jsonData);
     return data;
   }
 

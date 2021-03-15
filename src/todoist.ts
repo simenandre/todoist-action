@@ -10,28 +10,11 @@ export async function parseTodoistFromGithubIssue(
   };
 }
 
-export async function handleNewIssues(
-  todoist: ReturnType<typeof Todoist>,
-  issues: GithubIssue[],
-): Promise<GithubIssue[]> {
-  const updated = await Promise.all(
-    issues.map(async i => {
-      const itemArgs = await parseTodoistFromGithubIssue(i);
-      const item = await todoist.items.add(itemArgs);
-      return <GithubIssue>{
-        ...i,
-        todoistId: item?.id,
-      };
-    }),
-  );
-  return updated;
-}
-
 export async function handleTodoistUpdatedStatus(
   todoist: ReturnType<typeof Todoist>,
   d: GithubIssue,
   s: GithubIssue,
-) {
+): Promise<void> {
   if (!d.todoistId) throw new Error('Expect todoistId not be empty');
   // If was reopened:
   if (s.state === IssueState.Closed && d.state === IssueState.Open) {
