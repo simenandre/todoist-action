@@ -25,7 +25,7 @@ export async function githubIssuesDiff(
   client: Sdk,
   config: Config,
   source: GithubIssue[],
-) {
+): Promise<CompareResponse> {
   const res = await client.Search({
     query: config.query,
   });
@@ -48,10 +48,10 @@ export function notEmpty<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined;
 }
 
-export async function compareGithubIssues(
+export function compareGithubIssues(
   source: GithubIssue[],
   destination: GithubIssue[],
-) {
+): CompareResponse {
   if (source.length === 0) {
     return {
       created: destination,
@@ -66,7 +66,8 @@ export async function compareGithubIssues(
         if (!isGithubIssueEqual(s, d)) {
           return { ...s, ...d };
         }
-      }).filter(notEmpty),
+      })
+      .filter(notEmpty),
     deleted: source.filter(s => destination.find(d => d.id !== s.id)),
   };
 }

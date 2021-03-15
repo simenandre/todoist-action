@@ -51,7 +51,7 @@ const main = async () => {
 
   if (github.deleted) {
     await Promise.all(
-      github.updated.map(async d => {
+      github.deleted.map(async d => {
         if (d.todoistId) {
           await t.items.complete({
             id: d.todoistId,
