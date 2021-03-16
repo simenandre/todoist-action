@@ -7,6 +7,7 @@ on:
 
 jobs:
   sync:
+    name: Synchronize
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,6 +32,6 @@ jobs:
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           todoist-token: ${{ secrets.TODOIST_TOKEN }}
-          query: is:pr archived:false sort:updated-desc review-requested:cobraz 
+          query: is:pr archived:false sort:updated-desc review-requested:cobraz -label:backlog
           storage-bucket: gh-todoist
           sync-file-name: prs.json
