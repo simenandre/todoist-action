@@ -81,10 +81,6 @@ not paginate).
 Feel free to open an issue or pull request. The Todoist Action is still
 experimental, help us get is stable! Feedback is much appreciated!
 
-## Commercial alternatives
-
-- [Plexxy](https://www.pleexy.com/)
-
 [workflows]: ./.github/workflows/schedule.yml
 [actions]: https://github.com/cobraz/todoist-action/actions
 [search-syntax]:
