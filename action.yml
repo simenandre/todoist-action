@@ -11,13 +11,20 @@ inputs:
   query:
     required: true
     description: "Github Search Query, e.g 'is: issue'"
-  storage-bucket:
-    required: true
-    description: Where to store synchronization state
   sync-file-name:
     required: false
     description: 'filename/filepath for sync file. e.g. sync.json'
     default: 'gh-todoist.json'
+  sync-content:
+    required: false
+    description: a JSON dump that represents a previous output of this action
+    
+outputs:
+  sync-content:
+    description: A JSON dump of issues that has been synched with Todoist
+  has-changed:
+    description: This output is true when something changed in sync-content
+    
 runs:
   using: 'node12'
   main: 'dist/index.js'

@@ -1,7 +1,7 @@
-import { debug } from '@actions/core';
-import { Storage as GoogleCloudStorage } from '@google-cloud/storage';
-import getStream from 'get-stream';
+import { promises as fs } from 'fs';
+import { debug, setOutput } from '@actions/core';
 import { Config } from './config';
+import { invariant } from './utils';
 
 export enum IssueState {
   /** An issue that is still open */
@@ -31,32 +31,41 @@ export interface SyncStorage {
 }
 
 export class Storage {
-  constructor(
-    readonly config: Config,
-    readonly storage = new GoogleCloudStorage(),
-  ) {}
+  private content: SyncStorage = { github: [], todoist: [] };
+  constructor(readonly config: Config) {}
 
   async get(): Promise<SyncStorage> {
-    const file = this.getFile();
-    const [exists] = await file.exists();
-    if (exists) {
-      return JSON.parse(await getStream(file.createReadStream()));
+    if (this.config.syncContent) {
+      this.content = JSON.parse(this.config.syncContent);
+    } else {
+      const exists = await this.hasFile(this.getFilePath());
+      if (exists) {
+        this.content = JSON.parse(
+          await fs.readFile(this.getFilePath(), 'utf-8'),
+        );
+      }
     }
+    return this.content;
+  }
 
-    return { github: [], todoist: [] };
+  private async hasFile(file: string) {
+    return fs
+      .access(file)
+      .then(() => true)
+      .catch(() => false);
   }
 
   async set(data: SyncStorage): Promise<SyncStorage> {
-    const file = this.getFile();
-    const jsonData = JSON.stringify(data);
+    const jsonData = JSON.stringify(data, null, 2);
     debug(`Storing this object: ${jsonData}`);
-    await file.save(jsonData);
+    await fs.writeFile(this.getFilePath(), jsonData);
+    setOutput('sync-content', jsonData);
+    setOutput('has-changed', !(jsonData === JSON.stringify(this.content, null, 2)));
     return data;
   }
 
-  private getFile() {
-    return this.storage
-      .bucket(this.config.storageBucket)
-      .file(this.config.syncFileName);
+  private getFilePath() {
+    invariant(this.config.syncFileName, 'Expect syncFileName');
+    return this.config.syncFileName;
   }
 }

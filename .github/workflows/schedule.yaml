@@ -6,32 +6,40 @@ on:
     
 
 jobs:
-  sync:
-    name: Synchronize
+  sync_issues:
+    name: Synchronize // ${{ matrix.name }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: Issues
+            query: updated:>2020-06-01 archived:false sort:updated-desc assignee:cobraz -label:backlog
+            file-name: generic.json
+          - name: Pull Requests
+            query: is:pr updated:>2020-06-01 archived:false sort:updated-desc review-requested:cobraz -label:backlog
+            file-name: pr.json
+      fail-fast: false
     steps:
       - uses: actions/checkout@v2
 
-      - uses: google-github-actions/setup-gcloud@master
-        with:
-          service_account_key: ${{ secrets.GCP_KEY }}
-          project_id: cobraz
-          export_default_credentials: true
+      - run: gh gist view ${{ secrets.GIST_ID }} -f ${{ matrix.file-name }} > ./sync.json
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Sync issues / Generic
+      - name: Sync issues
+        id: sync
         uses: ./
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           todoist-token: ${{ secrets.TODOIST_TOKEN }}
-          query: archived:false sort:updated-desc assignee:cobraz updated:>2020-06-01 -label:backlog
-          storage-bucket: gh-todoist
-          sync-file-name: generic.json
-
-      - name: Sync issues / Pull Request
-        uses: ./
+          query: ${{ matrix.query }}
+          sync-file-name: ./sync.json
+      
+      - name: Deploy
+        if: steps.sync.outputs.has-changed == 'true'
+        uses: exuanbo/actions-deploy-gist@v1
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
-          todoist-token: ${{ secrets.TODOIST_TOKEN }}
-          query: is:pr archived:false sort:updated-desc updated:>2020-06-01 review-requested:cobraz -label:backlog
-          storage-bucket: gh-todoist
-          sync-file-name: prs.json
+          token: ${{ secrets.GH_TOKEN }}
+          gist_id: ${{ secrets.GIST_ID }}
+          gist_file_name: ${{ matrix.file-name }}
+          file_path: ./sync.json

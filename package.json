@@ -28,11 +28,9 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@adobe/node-fetch-retry": "^1.1.0",
-    "@google-cloud/storage": "^5.7.4",
     "array-sync": "^4.1.0",
     "crud-object-diff": "^2.2.2",
     "deep-equal": "^2.0.5",
-    "get-stream": "^6.0.0",
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "husky": "^4.3.8",
