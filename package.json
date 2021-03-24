@@ -1,8 +1,8 @@
 {
-  "name": "gh-todoist-tasks",
+  "name": "todoist-action",
   "version": "0.0.0",
   "private": true,
-  "description": "Map your variables based on other keys",
+  "description": "Synchronizes Github issues with Todoist",
   "main": "lib/main.js",
   "scripts": {
     "dev": "ts-node src/main.ts",
@@ -21,23 +21,22 @@
   "keywords": [
     "actions",
     "node",
-    "setup"
+    "todoist",
+    "todo",
+    "github-actions",
+    "todoist-sync"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "Simen A. W. Olsen <so@bjerk.io>",
+  "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@adobe/node-fetch-retry": "^1.1.0",
-    "array-sync": "^4.1.0",
-    "crud-object-diff": "^2.2.2",
     "deep-equal": "^2.0.5",
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "husky": "^4.3.8",
-    "promise-retry": "^2.0.1",
     "runtypes": "^5.0.1",
-    "todoist": "^0.4.0",
-    "yaml": "^1.10.0"
+    "todoist": "^0.4.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.19.4",
