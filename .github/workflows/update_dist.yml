@@ -16,5 +16,5 @@ jobs:
         with:
           file_pattern: dist/**
           commit_message: 'chore(dist): Update dist [automated commit]'
-          commit_user_name: Pulumi Bot
-          commit_user_email: pulumi-bot@users.noreply.github.com
+          commit_user_name: cobraz
+          commit_user_email: so@bjerk.io
