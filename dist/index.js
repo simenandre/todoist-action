@@ -41399,6 +41399,7 @@ class Storage {
     constructor(config) {
         this.config = config;
         this.content = { github: [], todoist: [] };
+        this.readContent = '';
     }
     get() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41408,7 +41409,8 @@ class Storage {
             else {
                 const exists = yield this.hasFile(this.getFilePath());
                 if (exists) {
-                    this.content = JSON.parse(yield fs_1.promises.readFile(this.getFilePath(), 'utf-8'));
+                    this.readContent = yield fs_1.promises.readFile(this.getFilePath(), 'utf-8');
+                    this.content = JSON.parse(this.readContent);
                 }
             }
             return this.content;
@@ -41428,7 +41430,7 @@ class Storage {
             core_1.debug(`Storing this object: ${jsonData}`);
             yield fs_1.promises.writeFile(this.getFilePath(), jsonData);
             core_1.setOutput('sync-content', jsonData);
-            core_1.setOutput('has-changed', !(jsonData === JSON.stringify(this.content, null, 2)));
+            core_1.setOutput('has-changed', !(jsonData === this.readContent));
             return data;
         });
     }

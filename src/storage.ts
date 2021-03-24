@@ -32,6 +32,7 @@ export interface SyncStorage {
 
 export class Storage {
   private content: SyncStorage = { github: [], todoist: [] };
+  private readContent = '';
   constructor(readonly config: Config) {}
 
   async get(): Promise<SyncStorage> {
@@ -40,9 +41,8 @@ export class Storage {
     } else {
       const exists = await this.hasFile(this.getFilePath());
       if (exists) {
-        this.content = JSON.parse(
-          await fs.readFile(this.getFilePath(), 'utf-8'),
-        );
+        this.readContent = await fs.readFile(this.getFilePath(), 'utf-8')
+        this.content = JSON.parse(this.readContent);
       }
     }
     return this.content;
@@ -60,7 +60,7 @@ export class Storage {
     debug(`Storing this object: ${jsonData}`);
     await fs.writeFile(this.getFilePath(), jsonData);
     setOutput('sync-content', jsonData);
-    setOutput('has-changed', !(jsonData === JSON.stringify(this.content, null, 2)));
+    setOutput('has-changed', !(jsonData === this.readContent));
     return data;
   }
 
