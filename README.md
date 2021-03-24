@@ -83,5 +83,4 @@ experimental, help us get is stable! Feedback is much appreciated!
 
 [workflows]: https://github.com/cobraz/todoist-action/blob/main/.github/workflows/schedule.yaml
 [actions]: https://github.com/cobraz/todoist-action/actions
-[search-syntax]:
-  https://docs.github.com/en/github/searching-for-information-on-github/understanding-the-search-syntax
+[search-syntax]: https://docs.github.com/en/github/searching-for-information-on-github/searching-issues-and-pull-requests
