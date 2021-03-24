@@ -23,6 +23,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - run: gh gist view ${{ secrets.GIST_ID }} -f ${{ matrix.file-name }} > ./sync.json
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Sync issues
         uses: ./
