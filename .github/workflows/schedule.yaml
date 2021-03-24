@@ -29,7 +29,7 @@ jobs:
           owner: octokit
           repo: request-action
 
-      - run: gh gist view ${{ secret.GIST_ID }} -f ${{ matrix.file-name }} > ./sync.json
+      - run: gh gist view ${{ secrets.GIST_ID }} -f ${{ matrix.file-name }} > ./sync.json
 
       - name: Sync issues
         uses: ./
@@ -43,6 +43,6 @@ jobs:
         uses: exuanbo/actions-deploy-gist@v1
         with:
           token: ${{ secrets.GH_TOKEN }}
-          gist_id: ${{ secret.GIST_ID }}
+          gist_id: ${{ secrets.GIST_ID }}
           gist_file_name: ${{ matrix.file-name }}
           file_path: ./sync.json
