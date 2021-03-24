@@ -56,12 +56,11 @@ export class Storage {
   }
 
   async set(data: SyncStorage): Promise<SyncStorage> {
-    const jsonData = JSON.stringify(data, null);
+    const jsonData = JSON.stringify(data, null, 2);
     debug(`Storing this object: ${jsonData}`);
     await fs.writeFile(this.getFilePath(), jsonData);
     setOutput('sync-content', jsonData);
-    setOutput('has-changed', !(jsonData === JSON.stringify(this.content)));
-
+    setOutput('has-changed', !(jsonData === JSON.stringify(this.content, null, 2)));
     return data;
   }
 

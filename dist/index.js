@@ -41424,11 +41424,11 @@ class Storage {
     }
     set(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const jsonData = JSON.stringify(data, null);
+            const jsonData = JSON.stringify(data, null, 2);
             core_1.debug(`Storing this object: ${jsonData}`);
             yield fs_1.promises.writeFile(this.getFilePath(), jsonData);
             core_1.setOutput('sync-content', jsonData);
-            core_1.setOutput('has-changed', !(jsonData === JSON.stringify(this.content)));
+            core_1.setOutput('has-changed', !(jsonData === JSON.stringify(this.content, null, 2)));
             return data;
         });
     }
