@@ -22,6 +22,8 @@ inputs:
 outputs:
   sync-content:
     description: A JSON dump of issues that has been synched with Todoist
+  has-changed:
+    description: This output is true when something changed in sync-content
     
 runs:
   using: 'node12'
