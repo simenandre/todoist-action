@@ -27,6 +27,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Sync issues
+        id: sync
         uses: ./
         with:
           github-token: ${{ secrets.GH_TOKEN }}
@@ -35,6 +36,7 @@ jobs:
           sync-file-name: ./sync.json
       
       - name: Deploy
+        if: steps.sync.outputs.has-changed == 'true'
         uses: exuanbo/actions-deploy-gist@v1
         with:
           token: ${{ secrets.GH_TOKEN }}

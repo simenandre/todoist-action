@@ -60,7 +60,7 @@ export class Storage {
     debug(`Storing this object: ${jsonData}`);
     await fs.writeFile(this.getFilePath(), jsonData);
     setOutput('sync-content', jsonData);
-    setOutput('has-changed', jsonData === JSON.stringify(this.content));
+    setOutput('has-changed', !(jsonData === JSON.stringify(this.content)));
 
     return data;
   }
