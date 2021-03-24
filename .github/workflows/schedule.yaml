@@ -22,13 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: octokit/request-action@v2.x
-        id: get_latest_release
-        with:
-          route: GET /repos/{owner}/{repo}/releases/latest
-          owner: octokit
-          repo: request-action
-
       - run: gh gist view ${{ secrets.GIST_ID }} -f ${{ matrix.file-name }} > ./sync.json
 
       - name: Sync issues
