@@ -81,7 +81,7 @@ not paginate).
 Feel free to open an issue or pull request. The Todoist Action is still
 experimental, help us get is stable! Feedback is much appreciated!
 
-[workflows]: ./.github/workflows/schedule.yml
+[workflows]: https://github.com/cobraz/todoist-action/blob/main/.github/workflows/schedule.yaml
 [actions]: https://github.com/cobraz/todoist-action/actions
 [search-syntax]:
   https://docs.github.com/en/github/searching-for-information-on-github/understanding-the-search-syntax
