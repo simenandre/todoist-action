@@ -13,10 +13,10 @@ jobs:
       matrix:
         include:
           - name: Issues
-            query: archived:false sort:updated-desc assignee:cobraz updated:>2021-01-01 -label:backlog
+            query: updated:>2020-06-01 archived:false sort:updated-desc assignee:cobraz -label:backlog
             file-name: generic.json
           - name: Pull Requests
-            query: is:pr archived:false sort:updated-desc review-requested:cobraz -label:backlog
+            query: is:pr updated:>2020-06-01 archived:false sort:updated-desc review-requested:cobraz -label:backlog
             file-name: pr.json
       fail-fast: false
     steps:
