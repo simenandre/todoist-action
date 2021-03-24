@@ -1,6 +1,7 @@
 name: Github Todoist Tasks
 description: Synchronizes Github issues with Todoist
 author: Simen A. W. Olsen
+
 inputs:
   github-token:
     required: true
@@ -28,3 +29,7 @@ outputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+
+branding:
+  icon: check-circle
+  color: red
