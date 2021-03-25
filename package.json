@@ -41,7 +41,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.19.4",
     "@graphql-codegen/fragment-matcher": "^2.0.1",
-    "@graphql-codegen/typescript": "^1.19.0",
+    "@graphql-codegen/typescript": "^1.21.1",
     "@graphql-codegen/typescript-graphql-request": "^3.0.0",
     "@graphql-codegen/typescript-operations": "^1.17.13",
     "@types/adobe__node-fetch-retry": "^1.0.0",
