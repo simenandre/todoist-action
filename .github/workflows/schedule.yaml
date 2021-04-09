@@ -13,10 +13,10 @@ jobs:
       matrix:
         include:
           - name: Issues
-            query: updated:>2020-06-01 archived:false sort:updated-desc assignee:cobraz -label:backlog
+            query: updated:>2021-04-01 archived:false sort:updated-desc assignee:cobraz -label:backlog
             artifact-name: generic
           - name: Pull Requests
-            query: is:pr updated:>2020-06-01 archived:false sort:updated-desc review-requested:cobraz -label:backlog
+            query: is:pr updated:>2021-04-01 archived:false sort:updated-desc review-requested:cobraz -label:backlog
             artifact-name: pr
       fail-fast: false
     steps:
