@@ -36434,7 +36434,6 @@ module.exports = Response;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AsyncContract = void 0;
 var errors_1 = __nccwpck_require__(3590);
 function AsyncContract() {
     var runtypes = [];
@@ -36472,7 +36471,6 @@ exports.AsyncContract = AsyncContract;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Contract = void 0;
 var errors_1 = __nccwpck_require__(3590);
 function Contract() {
     var runtypes = [];
@@ -36507,7 +36505,6 @@ exports.Contract = Contract;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.checked = exports.check = void 0;
 var errors_1 = __nccwpck_require__(3590);
 var prototypes = new WeakMap();
 /**
@@ -36608,19 +36605,16 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ValidationError = void 0;
 var ValidationError = /** @class */ (function (_super) {
     __extends(ValidationError, _super);
     function ValidationError(message, key) {
@@ -36638,54 +36632,43 @@ exports.ValidationError = ValidationError;
 /***/ }),
 
 /***/ 5568:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Brand = exports.InstanceOf = exports.Null = exports.Undefined = exports.Literal = void 0;
-__exportStar(__nccwpck_require__(4447), exports);
-__exportStar(__nccwpck_require__(6299), exports);
-__exportStar(__nccwpck_require__(8154), exports);
-__exportStar(__nccwpck_require__(3340), exports);
-__exportStar(__nccwpck_require__(2055), exports);
-__exportStar(__nccwpck_require__(3590), exports);
-__exportStar(__nccwpck_require__(6643), exports);
-__exportStar(__nccwpck_require__(202), exports);
-__exportStar(__nccwpck_require__(1441), exports);
+__export(__nccwpck_require__(8154));
+__export(__nccwpck_require__(3340));
+__export(__nccwpck_require__(2055));
+__export(__nccwpck_require__(3590));
+__export(__nccwpck_require__(6643));
+__export(__nccwpck_require__(202));
+__export(__nccwpck_require__(1441));
 var literal_1 = __nccwpck_require__(72);
-Object.defineProperty(exports, "Literal", ({ enumerable: true, get: function () { return literal_1.Literal; } }));
-Object.defineProperty(exports, "Undefined", ({ enumerable: true, get: function () { return literal_1.Undefined; } }));
-Object.defineProperty(exports, "Null", ({ enumerable: true, get: function () { return literal_1.Null; } }));
-__exportStar(__nccwpck_require__(5609), exports);
-__exportStar(__nccwpck_require__(8986), exports);
-__exportStar(__nccwpck_require__(9582), exports);
-__exportStar(__nccwpck_require__(1545), exports);
-__exportStar(__nccwpck_require__(6829), exports);
-__exportStar(__nccwpck_require__(8100), exports);
-__exportStar(__nccwpck_require__(582), exports);
-__exportStar(__nccwpck_require__(2687), exports);
-__exportStar(__nccwpck_require__(3170), exports);
-__exportStar(__nccwpck_require__(7898), exports);
-__exportStar(__nccwpck_require__(7902), exports);
-__exportStar(__nccwpck_require__(6209), exports);
+exports.Literal = literal_1.Literal;
+exports.Undefined = literal_1.Undefined;
+exports.Null = literal_1.Null;
+__export(__nccwpck_require__(5609));
+__export(__nccwpck_require__(8986));
+__export(__nccwpck_require__(1545));
+__export(__nccwpck_require__(6829));
+__export(__nccwpck_require__(8100));
+__export(__nccwpck_require__(582));
+__export(__nccwpck_require__(2687));
+__export(__nccwpck_require__(3170));
+__export(__nccwpck_require__(7898));
+__export(__nccwpck_require__(7902));
+__export(__nccwpck_require__(6209));
 var instanceof_1 = __nccwpck_require__(689);
-Object.defineProperty(exports, "InstanceOf", ({ enumerable: true, get: function () { return instanceof_1.InstanceOf; } }));
-__exportStar(__nccwpck_require__(7606), exports);
-__exportStar(__nccwpck_require__(2928), exports);
+exports.InstanceOf = instanceof_1.InstanceOf;
+__export(__nccwpck_require__(7606));
+__export(__nccwpck_require__(2928));
 var brand_1 = __nccwpck_require__(6928);
-Object.defineProperty(exports, "Brand", ({ enumerable: true, get: function () { return brand_1.Brand; } }));
-__exportStar(__nccwpck_require__(3505), exports);
+exports.Brand = brand_1.Brand;
+__export(__nccwpck_require__(3505));
 
 
 /***/ }),
@@ -36696,7 +36679,6 @@ __exportStar(__nccwpck_require__(3505), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.match = void 0;
 function match() {
     var cases = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -36716,33 +36698,12 @@ exports.match = match;
 
 /***/ }),
 
-/***/ 4447:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-
-
-/***/ }),
-
-/***/ 6299:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-
-
-/***/ }),
-
 /***/ 5601:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.innerValidate = exports.create = void 0;
 var index_1 = __nccwpck_require__(5568);
 var show_1 = __nccwpck_require__(6045);
 var errors_1 = __nccwpck_require__(3590);
@@ -36835,7 +36796,6 @@ var show = function (needsParens, circular) { return function (refl) {
             case 'void':
             case 'boolean':
             case 'number':
-            case 'bigint':
             case 'string':
             case 'symbol':
             case 'function':
@@ -36898,7 +36858,6 @@ function readonlyTag(_a) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Array = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Construct an array runtype from a runtype for its elements.
@@ -36940,36 +36899,12 @@ function withExtraModifierFuncs(A) {
 
 /***/ }),
 
-/***/ 9582:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.BigInt = void 0;
-var runtype_1 = __nccwpck_require__(5601);
-/**
- * Validates that a value is a bigint.
- */
-exports.BigInt = runtype_1.create(function (value) {
-    return typeof value === 'bigint'
-        ? { success: true, value: value }
-        : {
-            success: false,
-            message: "Expected bigint, but was " + (value === null ? value : typeof value),
-        };
-}, { tag: 'bigint' });
-
-
-/***/ }),
-
 /***/ 5609:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Boolean = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Validates that a value is a boolean.
@@ -36992,8 +36927,8 @@ exports.Boolean = runtype_1.create(function (value) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Brand = void 0;
 var runtype_1 = __nccwpck_require__(5601);
+exports.RuntypeName = Symbol('RuntypeName');
 function Brand(brand, entity) {
     return runtype_1.create(function (value) {
         var validated = entity.validate(value);
@@ -37017,7 +36952,6 @@ exports.Brand = Brand;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Guard = exports.Constraint = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 var string_1 = __nccwpck_require__(1545);
 var unknown_1 = __nccwpck_require__(6643);
@@ -37043,84 +36977,61 @@ function Constraint(underlying, constraint, options) {
     });
 }
 exports.Constraint = Constraint;
-var Guard = function (guard, options) { return unknown_1.Unknown.withGuard(guard, options); };
-exports.Guard = Guard;
+exports.Guard = function (guard, options) { return unknown_1.Unknown.withGuard(guard, options); };
 
 
 /***/ }),
 
 /***/ 3170:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Dictionary = void 0;
 var runtype_1 = __nccwpck_require__(5601);
-var string_1 = __nccwpck_require__(1545);
-var constraint_1 = __nccwpck_require__(2928);
 var show_1 = __nccwpck_require__(6045);
-var NumberKey = constraint_1.Constraint(string_1.String, function (s) { return !isNaN(+s); }, { name: 'number' });
 function Dictionary(value, key) {
-    var keyRuntype = key === undefined
-        ? string_1.String
-        : key === 'string'
-            ? string_1.String
-            : key === 'number'
-                ? NumberKey
-                : key;
-    var keyString = show_1.default(keyRuntype);
+    if (key === void 0) { key = 'string'; }
     return runtype_1.create(function (x, visited) {
         if (x === null || x === undefined) {
-            var a = runtype_1.create(x, { tag: 'dictionary', key: keyString, value: value });
+            var a = runtype_1.create(x, { tag: 'dictionary', key: key, value: value });
             return { success: false, message: "Expected " + show_1.default(a) + ", but was " + x };
         }
         if (typeof x !== 'object') {
-            var a = runtype_1.create(x, { tag: 'dictionary', key: keyString, value: value });
+            var a = runtype_1.create(x, { tag: 'dictionary', key: key, value: value });
             return { success: false, message: "Expected " + show_1.default(a.reflect) + ", but was " + typeof x };
         }
         if (Object.getPrototypeOf(x) !== Object.prototype) {
             if (!Array.isArray(x)) {
-                var a = runtype_1.create(x, { tag: 'dictionary', key: keyString, value: value });
+                var a = runtype_1.create(x, { tag: 'dictionary', key: key, value: value });
                 return {
                     success: false,
                     message: "Expected " + show_1.default(a.reflect) + ", but was " + Object.getPrototypeOf(x),
                 };
             }
-            else if (keyString === 'string')
+            else if (key === 'string')
                 return { success: false, message: 'Expected dictionary, but was array' };
         }
-        var numberString = /^(?:NaN|-?\d+(?:\.\d+)?)$/u;
-        for (var _i = 0, _a = __spreadArray(__spreadArray([], Object.getOwnPropertyNames(x)), Object.getOwnPropertySymbols(x)); _i < _a.length; _i++) {
-            var k = _a[_i];
-            // We should provide interoperability with `number` and `string` here,
-            // as a user would expect JavaScript engines to convert numeric keys to
-            // string keys automatically. So, if the key can be interpreted as a
-            // decimal number, then test it against a `Number` OR `String` runtype.
-            var isNumberLikeKey = typeof k === 'string' && numberString.test(k);
-            var l = isNumberLikeKey ? global.Number(k) : k;
-            if (isNumberLikeKey ? !keyRuntype.guard(l) && !keyRuntype.guard(k) : !keyRuntype.guard(l)) {
-                return {
-                    success: false,
-                    message: "Expected dictionary key to be a " + keyString + ", but was " + typeof l,
-                };
+        for (var k in x) {
+            // Object keys are unknown strings
+            if (key === 'number') {
+                if (isNaN(+k))
+                    return {
+                        success: false,
+                        message: 'Expected dictionary key to be a number, but was string',
+                    };
             }
             var validated = runtype_1.innerValidate(value, x[k], visited);
             if (!validated.success) {
                 return {
                     success: false,
                     message: validated.message,
-                    key: validated.key ? global.String(k) + "." + validated.key : global.String(k),
+                    key: validated.key ? k + "." + validated.key : k,
                 };
             }
         }
         return { success: true, value: x };
-    }, { tag: 'dictionary', key: keyString, value: value });
+    }, { tag: 'dictionary', key: key, value: value });
 }
 exports.Dictionary = Dictionary;
 
@@ -37133,7 +37044,6 @@ exports.Dictionary = Dictionary;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Function = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Construct a runtype for functions.
@@ -37156,7 +37066,6 @@ exports.Function = runtype_1.create(function (value) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.InstanceOf = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 function InstanceOf(ctor) {
     return runtype_1.create(function (value) {
@@ -37179,7 +37088,6 @@ exports.InstanceOf = InstanceOf;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Intersect = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 function Intersect() {
     var intersectees = [];
@@ -37208,7 +37116,6 @@ exports.Intersect = Intersect;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Lazy = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Construct a possibly-recursive Runtype.
@@ -37244,17 +37151,12 @@ exports.Lazy = Lazy;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Null = exports.Undefined = exports.Literal = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Be aware of an Array of Symbols `[Symbol()]` which would throw "TypeError: Cannot convert a Symbol value to a string"
  */
 function literal(value) {
-    return Array.isArray(value)
-        ? String(value.map(String))
-        : typeof value === 'bigint'
-            ? String(value) + 'n'
-            : String(value);
+    return Array.isArray(value) ? String(value.map(String)) : String(value);
 }
 /**
  * Construct a runtype for a type literal.
@@ -37288,7 +37190,6 @@ exports.Null = Literal(null);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Never = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Validates nothing (unknown fails).
@@ -37307,7 +37208,6 @@ exports.Never = runtype_1.create(function (value) { return ({
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Number = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Validates that a value is a number.
@@ -37330,7 +37230,6 @@ exports.Number = runtype_1.create(function (value) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Partial = exports.Record = exports.InternalRecord = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 var util_1 = __nccwpck_require__(5571);
 var show_1 = __nccwpck_require__(6045);
@@ -37389,7 +37288,6 @@ function withExtraModifierFuncs(A) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.String = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Validates that a value is a string.
@@ -37412,7 +37310,6 @@ exports.String = runtype_1.create(function (value) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Symbol = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Validates that a value is a symbol.
@@ -37436,7 +37333,6 @@ exports.Symbol = Sym;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Tuple = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 var array_1 = __nccwpck_require__(8100);
 var unknown_1 = __nccwpck_require__(6643);
@@ -37484,7 +37380,6 @@ exports.Tuple = Tuple;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Union = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 var show_1 = __nccwpck_require__(6045);
 var util_1 = __nccwpck_require__(5571);
@@ -37568,7 +37463,6 @@ exports.Union = Union;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Unknown = void 0;
 var runtype_1 = __nccwpck_require__(5601);
 /**
  * Validates anything, but provides no new type information about it.
@@ -37584,7 +37478,6 @@ exports.Unknown = runtype_1.create(function (value) { return ({ success: true, v
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Void = void 0;
 var unknown_1 = __nccwpck_require__(6643);
 /**
  * Void is an alias for Unknown
@@ -37602,7 +37495,6 @@ exports.Void = unknown_1.Unknown;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.hasKey = void 0;
 // Type guard to determine if an object has a given key
 // If this feature gets implemented, we can use `in` instead: https://github.com/Microsoft/TypeScript/issues/10485
 function hasKey(k, o) {
