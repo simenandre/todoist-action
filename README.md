@@ -57,7 +57,7 @@ The action can be configured with the following arguments:
 ## Synchronization Data
 
 This Github Action needs a state, which you are free to choose which. You can
-find an example in my [workflows][], where I use Github Gist to store the
+find an example in my [workflows][], where I use Github Action cache to store the
 synchronization data.
 
 You can either use file storage or use Github Action input/output to communicate
