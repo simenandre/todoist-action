@@ -28,7 +28,7 @@ jobs:
           name: ${{ matrix.artifact-name }}
       
       - name: Decrypt sync
-        run: openssl enc -in ./sync.json.enc -d -aes-256-cbc -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json
+        run: openssl enc -in ./sync.json.enc -d -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json
 
       - name: Sync issues
         if: always()
@@ -42,7 +42,7 @@ jobs:
       
       - name: Encrypt sync
         if: always() && steps.sync.outputs.has-changed == 'true'
-        run: openssl enc -in sync.json -aes-256-cbc -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json.enc
+        run: openssl enc -in sync.json -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json.enc
 
       - name: Save artifact
         if: always() && steps.sync.outputs.has-changed == 'true'
