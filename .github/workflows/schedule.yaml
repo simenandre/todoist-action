@@ -14,20 +14,22 @@ jobs:
         include:
           - name: Issues
             query: updated:>2021-04-01 archived:false sort:updated-desc assignee:cobraz -label:backlog
-            artifact-name: generic
+            key: generic
           - name: Pull Requests
             query: is:pr updated:>2021-04-01 archived:false sort:updated-desc review-requested:cobraz -label:backlog
-            artifact-name: pr
+            key: pr
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
 
-      - name: Download a single artifact
-        uses: actions/download-artifact@v2
+      - name: Download cache
+        id: cache
+        uses: actions/cache@v2
         with:
-          name: ${{ matrix.artifact-name }}
+          key: ${{ matrix.key }}
       
       - name: Decrypt sync
+        if: steps.cache.outputs.cache-hit == 'true'
         run: openssl enc -in ./sync.json.enc -d -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json
 
       - name: Sync issues
@@ -43,10 +45,3 @@ jobs:
       - name: Encrypt sync
         if: always() && steps.sync.outputs.has-changed == 'true'
         run: openssl enc -in sync.json -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json.enc
-
-      - name: Save artifact
-        if: always() && steps.sync.outputs.has-changed == 'true'
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.artifact-name }}
-          path: sync.json.enc
