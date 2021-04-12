@@ -1,6 +1,6 @@
 {
   "name": "todoist-action",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Synchronizes Github issues with Todoist",
   "main": "lib/main.js",
