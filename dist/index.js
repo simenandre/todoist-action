@@ -41350,15 +41350,20 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const github = yield github_1.githubIssuesDiff(o, config, store.github);
     try {
         if (github.created) {
-            const updated = yield Promise.all(github.created
+            const created = yield Promise.all(github.created
                 .filter(f => github_1.notEmpty(f) && f.state !== storage_1.IssueState.Closed)
                 .map((i) => __awaiter(void 0, void 0, void 0, function* () {
                 const itemArgs = yield todoist_2.parseTodoistFromGithubIssue(i);
-                const item = yield t.items.add(itemArgs);
+                const exists = t.items.get().find(i => i.content === itemArgs.content);
+                if (exists) {
+                    core_1.debug(`GitHub issue ${i.repo}#${i.number} exists already in Todoist 🤷‍♂️`);
+                }
+                const item = exists ? exists : yield t.items.add(itemArgs);
                 core_1.debug(`GitHub issue ${i.repo}#${i.number} was created.`);
-                return Object.assign(Object.assign({}, i), { todoistId: item === null || item === void 0 ? void 0 : item.id });
+                const ghIssue = Object.assign(Object.assign({}, i), { todoistId: item === null || item === void 0 ? void 0 : item.id });
+                return ghIssue;
             })));
-            store.github.push(...updated);
+            store.github.push(...created);
         }
         if (github.updated) {
             yield Promise.all(github.updated.filter(github_1.notEmpty).map((d) => __awaiter(void 0, void 0, void 0, function* () {
