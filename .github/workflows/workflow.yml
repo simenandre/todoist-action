@@ -20,7 +20,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
-          token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           release-type: node
       - name: tag major and patch versions
         if: ${{ steps.release.outputs.release_created }}
