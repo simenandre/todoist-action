@@ -21,20 +21,27 @@ const main = async () => {
   const github = await githubIssuesDiff(o, config, store.github);
   try {
     if (github.created) {
-      const updated = await Promise.all(
+      const created = await Promise.all(
         github.created
           .filter(f => notEmpty(f) && f.state !== IssueState.Closed)
           .map(async i => {
             const itemArgs = await parseTodoistFromGithubIssue(i);
-            const item = await t.items.add(itemArgs);
+            const exists = t.items.get().find(i => i.content === itemArgs.content);
+
+            if (exists) {
+              debug(`GitHub issue ${i.repo}#${i.number} exists already in Todoist 🤷‍♂️`);
+            }
+
+            const item = exists ? exists : await t.items.add(itemArgs);
             debug(`GitHub issue ${i.repo}#${i.number} was created.`);
-            return <GithubIssue>{
+            const ghIssue = <GithubIssue>{
               ...i,
               todoistId: item?.id,
             };
+            return ghIssue;
           }),
       );
-      store.github.push(...updated);
+      store.github.push(...created);
     }
 
     if (github.updated) {
