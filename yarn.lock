@@ -1231,10 +1231,10 @@
   dependencies:
     dotenv "*"
 
-"@types/faker@^5.1.7":
-  version "5.1.7"
-  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.1.7.tgz#1c3f0655f6e912f5578ce40baa941ab8705fc0ef"
-  integrity sha512-ByseCEyhb+64fapaFR/yASUfAU+Ia4LpCnHhoNMQJFSIBvbtFoEZQB0elwrSF/idpKL5OZvmZhCCukGV8Zi22w==
+"@types/faker@^5.5.2":
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.2.tgz#71084b72b5ac18bdb3404b9b29db010ba74136e8"
+  integrity sha512-KRBp6Cb2BsC/mz1m2oRp79KlEViX/nTZSunRPltXHpxEEEvFg1wQbgGJeJY+TGQHHZCx0F+jskPDwrkEovbvwA==
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
