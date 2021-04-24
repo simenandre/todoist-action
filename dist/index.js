@@ -38113,6 +38113,10 @@ var Todoist = function (token, userOptions) {
     var email = {
     // TODO: implement
     };
+    var syncToken_ = {
+        get: function () { return syncToken; },
+        set: function (newToken) { syncToken = newToken; },
+    };
     var api = {
         activityLog: activityLog,
         backup: backup,
@@ -38134,14 +38138,116 @@ var Todoist = function (token, userOptions) {
         state: state,
         sync: sync,
         user: user,
+        syncToken: syncToken_,
     };
     return api;
 };
+Todoist.colorsById = COLORS_BY_ID;
+Todoist.getColor = function (id) { return COLORS_BY_ID[id]; };
 
+/** Specific properties */
+/** Here are the extra properties for the *_invitation_* types of live notifications: */
+/** Property	Description */
+/** from_user */
+/** Object */
+/** User data, useful on share_invitation_sent. */
+/** project_name */
+/** String */
+/** The project name, useful for share_invitation_* where you may not have the project in the local model. */
+/** invitation_id */
+/** Integer */
+/** The invitation id. Useful for accepting/rejecting invitations. */
+/** invitation_secret */
+/** String */
+/** The invitation secret key. Useful for accepting/rejecting invitations. */
+/** Here are the extra properties for the share_invitation_sent type of live notifications: */
+/** Property	Description */
+/** state */
+/** String */
+/** Invitation state. Initially invited, can change the state to accepted or rejected. */
+/** Here are the extra properties for the user_removed_from_project type of live notifications: */
+/** Property	Description */
+/** removed_name */
+/** String */
+/** The name of the user removed. */
+/** removed_uid */
+/** Integer */
+/** The uid of the user removed. */
+/** Here are the extra properties for the biz_trial_will_end type of live notifications: */
+/** Property	Description */
+/** quantity */
+/** Integer */
+/** The number of users under the control of the business account. */
+/** plan */
+/** String */
+/** Tariff plan name. Valid values are business_monthly and business_yearly. */
+/** active_until */
+/** Integer */
+/** The timestamp when the business account will be disabled. The value may not match the business account subscription end date, as we give some extra days (up to two weeks) to pay the invoice. */
+/** Here are the extra properties for the biz_payment_failed type of live notifications: */
+/** Property	Description */
+/** quantity */
+/** Integer */
+/** The number of users under the control of the business account. */
+/** plan */
+/** String */
+/** Tariff plan name. Valid values are business_monthly and business_yearly. */
+/** active_until */
+/** Integer */
+/** The timestamp when the business account will be disabled. The value may not match the business account subscription end date, as we give some extra days (up to two weeks) to pay the invoice. */
+/** amount_due */
+/** Integer */
+/** Invoice amount. Integer value in 0.01 of currency. */
+/** attempt_count */
+/** Integer */
+/** Number of automatic payment attempts made for this invoice. */
+/** currency */
+/** String */
+/** Currency value. Three-letter ISO currency code representing the currency in which the charge was made. */
+/** description */
+/** String */
+/** Invoice description. */
+/** next_payment_attempt */
+/** String */
+/** Timestamp value. */
+/** Here are the extra properties for the biz_account_disabled type of live notifications: */
+/** Property	Description */
+/** quantity */
+/** Integer */
+/** The number of users under the control of the business account. */
+/** plan */
+/** String */
+/** Tariff plan name. Valid values are business_monthly and business_yearly. */
+/** active_until */
+/** Integer */
+/** The timestamp when the business account will be disabled. The value may not match the business account subscription end date, as we give some extra days (up to two weeks) to pay the invoice. */
+/** Here are the extra properties for the biz_invitation_created type of live notifications: */
+/** Property	Description */
+/** state */
+/** String */
+/** Invitation state. Initially invited, can change the state to accepted or rejected. */
+/** invitation_secret */
+/** String */
+/** Invitation secret. Should be used to accept or reject invitation. */
+/** invitation_message */
+/** String */
+/** Invitation message. */
+/** account_name */
+/** String */
+/** Business account (company) name. */
+
+var v8Types = /*#__PURE__*/Object.freeze({
+    __proto__: null
+});
+
+// export V8 as the current version
 var Todoist$1 = Todoist;
+// create backwards compatibility list
+var v8 = Todoist;
 
 exports.Todoist = Todoist$1;
-exports.v8 = Todoist;
+exports.TodoistV8Types = v8Types;
+exports.v8 = v8;
 //# sourceMappingURL=index.js.map
 
 
