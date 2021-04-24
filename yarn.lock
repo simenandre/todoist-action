@@ -6114,10 +6114,10 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-runtypes@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/runtypes/-/runtypes-5.1.0.tgz#a1f2501b5ca8fda47d51ea15b6ccca45e924a8c3"
-  integrity sha512-OMHkz6dxysXj4E8Fj/HCGjtdJUhapQUN7puvqzuzvjaX28pd52PZmEMqQlkIzCfKdhXdM0ghx8PpvELprEnOLQ==
+runtypes@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/runtypes/-/runtypes-6.2.1.tgz#d6767b3ad35dcc5ba1ef7ff0ff76cbabab3a93b5"
+  integrity sha512-ZzOBGSPYT7qas93oNfHyoVG6eZyuLJ1husI+892RB/gsHwd+Rc4u61/5XCunNMDjKb0jl3LB/2wq12UCuaWoxQ==
 
 rxjs@^6.3.3, rxjs@^6.6.0, rxjs@^6.6.3:
   version "6.6.3"
