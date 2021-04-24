@@ -37,7 +37,7 @@
     "graphql-request": "^3.4.0",
     "husky": "^6.0.0",
     "runtypes": "^5.1.0",
-    "todoist": "^0.4.0"
+    "todoist": "^0.5.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.3",
