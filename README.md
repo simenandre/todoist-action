@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="180" src="./.github/assets/header.svg" alt="Todoist Githug Action">
+  <img width="180" src="./.github/assets/header.svg" alt="Todoist Github Action">
   
   Synchronize Github tasks to Todoist with Github Actions!
 
