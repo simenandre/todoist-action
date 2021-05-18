@@ -46,4 +46,4 @@ jobs:
       - uses: google-github-actions/upload-cloud-storage@main
         with:
           path: ./sync.json
-          destination: gh-todoist/${{ matrix.key }}.json
+          destination: ${{ secrets.BUCKET }}/${{ matrix.key }}.json
