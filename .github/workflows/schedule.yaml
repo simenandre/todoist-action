@@ -21,17 +21,13 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-
-      - name: Download cache
-        id: cache
-        uses: actions/cache@v2.1.4
-        with:
-          key: ${{ matrix.key }}
-          path: ./sync.json.enc
       
-      - name: Decrypt sync
-        if: steps.cache.outputs.cache-hit == 'true'
-        run: openssl enc -in ./sync.json.enc -d -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_KEY }}
+          export_default_credentials: true
+      
+      - run: wget -O sync.json https://storage.googleapis.com/${{ secrets.BUCKET }}/${{ matrix.key }}.json || exit 0
 
       - name: Sync issues
         if: always()
@@ -46,3 +42,8 @@ jobs:
       - name: Encrypt sync
         if: always() && steps.sync.outputs.has-changed == 'true'
         run: openssl enc -in sync.json -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json.enc
+        
+      - uses: google-github-actions/upload-cloud-storage@main
+        with:
+          path: ./sync.json
+          destination: gh-todoist/${{ matrix.key }}.json
