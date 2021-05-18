@@ -41,8 +41,14 @@ export class Storage {
     } else {
       const exists = await this.hasFile(this.getFilePath());
       if (exists) {
-        this.readContent = await fs.readFile(this.getFilePath(), 'utf-8')
+        this.readContent = await fs.readFile(this.getFilePath(), 'utf-8');
         this.content = JSON.parse(this.readContent);
+      } else {
+        this.readContent = '';
+        this.content = {
+          github: [],
+          todoist: [],
+        };
       }
     }
     return this.content;

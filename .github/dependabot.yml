@@ -4,18 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    labels:
-      - "impact/no-changelog-required"
-      - "github-actions"
-      - "dependencies"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "typescript*"
-    labels:
-      - "impact/no-changelog-required"
-      - "npm"
-      - "dependencies"
     
