@@ -42212,7 +42212,15 @@ class Storage {
                 const exists = yield this.hasFile(this.getFilePath());
                 if (exists) {
                     this.readContent = yield external_fs_.promises.readFile(this.getFilePath(), 'utf-8');
-                    this.content = JSON.parse(this.readContent);
+                    if (this.readContent === '' || this.readContent === ' ') {
+                        this.content = {
+                            github: [],
+                            todoist: [],
+                        };
+                    }
+                    else {
+                        this.content = JSON.parse(this.readContent);
+                    }
                 }
                 else {
                     this.readContent = '';
