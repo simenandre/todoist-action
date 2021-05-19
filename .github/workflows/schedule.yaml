@@ -28,6 +28,8 @@ jobs:
           export_default_credentials: true
       
       - run: wget -O sync.json https://storage.googleapis.com/${{ secrets.BUCKET }}/${{ matrix.key }}.json || exit 0
+      
+      - run: cat sync.json
 
       - name: Sync issues
         if: always()
@@ -38,10 +40,6 @@ jobs:
           todoist-token: ${{ secrets.TODOIST_TOKEN }}
           query: ${{ matrix.query }}
           sync-file-name: ./sync.json
-      
-      - name: Encrypt sync
-        if: always() && steps.sync.outputs.has-changed == 'true'
-        run: openssl enc -in sync.json -pbkdf2 -pass pass:${{ secrets.TODOIST_TOKEN }} -out sync.json.enc
         
       - uses: google-github-actions/upload-cloud-storage@main
         with:
