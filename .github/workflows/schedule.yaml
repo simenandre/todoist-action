@@ -29,7 +29,9 @@ jobs:
       
       - run: wget -O sync.json https://storage.googleapis.com/${{ secrets.BUCKET }}/${{ matrix.key }}.json || exit 0
       
-      - run: cat sync.json
+      - run: |
+          ls
+          cat sync.json
 
       - name: Sync issues
         if: always()
