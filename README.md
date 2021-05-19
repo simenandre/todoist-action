@@ -85,6 +85,8 @@ experimental, help us get is stable! Feedback is much appreciated!
 
 The awesome logo was made by [@AnneMatilde](https://github.com/annematilde)! 🙏
 
+**Notice**: This is not created by or associated with Todoist in any way.
+
 [workflows]: https://github.com/cobraz/todoist-action/blob/main/.github/workflows/schedule.yaml
 [actions]: https://github.com/cobraz/todoist-action/actions
 [search-syntax]: https://docs.github.com/en/github/searching-for-information-on-github/searching-issues-and-pull-requests
