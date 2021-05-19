@@ -27,11 +27,7 @@ jobs:
           service_account_key: ${{ secrets.GCP_KEY }}
           export_default_credentials: true
       
-      - run: wget -O sync.json https://storage.googleapis.com/${{ secrets.BUCKET }}/${{ matrix.key }}.json || exit 0
-      
-      - run: |
-          ls
-          cat sync.json
+      - run: wget https://storage.googleapis.com/${{ secrets.BUCKET }}/${{ matrix.key }}.json || exit 0
 
       - name: Sync issues
         if: always()
@@ -41,9 +37,9 @@ jobs:
           github-token: ${{ secrets.GH_TOKEN }}
           todoist-token: ${{ secrets.TODOIST_TOKEN }}
           query: ${{ matrix.query }}
-          sync-file-name: ./sync.json
+          sync-file-name: ./${{ matrix.key }}.json
         
       - uses: google-github-actions/upload-cloud-storage@main
         with:
-          path: ./sync.json
-          destination: ${{ secrets.BUCKET }}/${{ matrix.key }}.json
+          path: ./${{ matrix.key }}.json
+          destination: ${{ secrets.BUCKET }}
