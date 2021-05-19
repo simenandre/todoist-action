@@ -6,6 +6,18 @@ _(none)_
 
 ---
 
+## [1.2.0](https://www.github.com/cobraz/todoist-action/compare/v1.1.0...v1.2.0) (2021-05-19)
+
+
+### Features
+
+* Support empty storage ([#64](https://www.github.com/cobraz/todoist-action/issues/64)) ([60c5bc8](https://www.github.com/cobraz/todoist-action/commit/60c5bc8df76ff6fd97f26c3cd6396d4030faec17))
+
+
+### Bug Fixes
+
+* If empty content, return empty storage object ([654ab30](https://www.github.com/cobraz/todoist-action/commit/654ab3031c7fb63daa7e96cec437bb26315204eb))
+
 ## [1.1.0](https://www.github.com/cobraz/todoist-action/compare/v1.0.1...v1.1.0) (2021-04-12)
 
 
