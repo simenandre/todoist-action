@@ -3,6 +3,17 @@
   "version": "1.2.0",
   "private": true,
   "description": "Synchronizes Github issues with Todoist",
+  "keywords": [
+    "actions",
+    "node",
+    "todoist",
+    "todo",
+    "github-actions",
+    "todoist-sync"
+  ],
+  "repository": "github:cobraz/todoist-action",
+  "license": "Apache-2.0",
+  "author": "Simen A. W. Olsen <so@bjerk.io>",
   "main": "lib/main.js",
   "scripts": {
     "dev": "ts-node src/main.ts",
@@ -15,20 +26,12 @@
     "all": "yarn  run build && yarn  run format && yarn run lint && yarn run test",
     "prepare": "husky install .github/husky"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cobraz/gh-todoist-tasks.git"
+  "lint-staged": {
+    "src/**/*.{yaml,yml}": "prettier --write",
+    "src/**/*.{js,ts}": "eslint --cache --fix",
+    "{.eslintrc,.releaserc.json,.tsconfig.json}": "prettier --write",
+    "*.md": "prettier --write"
   },
-  "keywords": [
-    "actions",
-    "node",
-    "todoist",
-    "todo",
-    "github-actions",
-    "todoist-sync"
-  ],
-  "author": "Simen A. W. Olsen <so@bjerk.io>",
-  "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@adobe/node-fetch-retry": "^1.1.0",
@@ -60,19 +63,13 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "~24.3.5",
     "faker": "^5.5.3",
+    "husky": "^6.0.0",
     "jest": "~26.6.3",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "rimraf": "~3.0.2",
     "ts-jest": "~26.5.4",
     "ts-node": "^9.1.1",
-    "typescript": "^4.0.5",
-    "husky": "^6.0.0"
-  },
-  "lint-staged": {
-    "src/**/*.{yaml,yml}": "prettier --write",
-    "src/**/*.{js,ts}": "eslint --cache --fix",
-    "{.eslintrc,.releaserc.json,.tsconfig.json}": "prettier --write",
-    "*.md": "prettier --write"
+    "typescript": "^4.0.5"
   }
 }
