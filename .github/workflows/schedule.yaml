@@ -34,7 +34,7 @@ jobs:
         id: sync
         uses: ./
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
           todoist-token: ${{ secrets.TODOIST_TOKEN }}
           query: ${{ matrix.query }}
           sync-file-name: ./${{ matrix.key }}.json
