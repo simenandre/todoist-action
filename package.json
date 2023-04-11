@@ -11,7 +11,7 @@
     "github-actions",
     "todoist-sync"
   ],
-  "repository": "github:cobraz/todoist-action",
+  "repository": "github:simenandre/todoist-action",
   "license": "Apache-2.0",
   "author": "Simen A. W. Olsen <so@bjerk.io>",
   "main": "lib/main.js",
