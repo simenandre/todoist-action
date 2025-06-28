@@ -48,7 +48,7 @@
     "@graphql-codegen/typescript": "^2.3.1",
     "@graphql-codegen/typescript-graphql-request": "^3.1.1",
     "@graphql-codegen/typescript-operations": "^1.17.15",
-    "@types/adobe__node-fetch-retry": "^1.0.0",
+    "@types/adobe__node-fetch-retry": "^2.0.0",
     "@types/deep-equal": "^1.0.1",
     "@types/dotenv": "^8.2.0",
     "@types/faker": "^5.5.3",
