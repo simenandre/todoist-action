@@ -59,7 +59,7 @@
     "@vercel/ncc": "^0.36.1",
     "dotenv": "^8.2.0",
     "eslint": "~7.25.0",
-    "eslint-config-prettier": "~8.1.0",
+    "eslint-config-prettier": "~8.10.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jest": "~25.2.3",
     "faker": "^5.5.3",
